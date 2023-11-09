@@ -1,0 +1,28 @@
+{
+    "editor.formatOnSave": true,
+    "eslint.enable": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.tslint": true,
+        "source.fixAll.eslint": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "minapp-vscode.reserveTags": [
+        "text"
+    ],
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.associations": {
+        "*.wxss": "css",
+        "*.wxs": "javascript"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "minapp-vscode.wxmlFormatter": "wxml",
+}
