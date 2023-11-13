@@ -1,5 +1,5 @@
 /**
- * 1. 题目 - 两数之和
+ * LeeCode - 1题，两数之和（Two Sum）
  * 给定一个整数数组 nums 和一个整数目标值 target ，请你在该数组中找出 和为目标值 的那 两个 整数，并返回它们的数组下标,
  * 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
  * 你可以按任意顺序返回答案。
@@ -21,16 +21,23 @@
 const nums = [2, 7, 11, 15];
 const target = 9;
 const result = [] as any;
-for (let i = 0; i < nums.length; i++) {
-  for (let j = 0; j < nums.length; j++) {
+// 需要匹配两个值，第一个指针的遍历,最大长度 < nums.length- 1（最大长度的值 = nums.length - 2）
+// 正常的遍历，调整遍历的长度，（nums.length- 1）,去除最后一个数，和自己配置的环节。
+for (let i = 0; i < nums.length - 1; i++) {
+  console.log(i, "==================== - 1");
+  // j = i + 1，不和自己配置，第二个指针的遍历，最大长度 < nums.length（最大长度的值 = nums.length - 1）
+  // 正常遍历基础上，就指针的起始位置做了调整，第二个指针起点调整为，第一个指针当前所处的位置
+  for (let j = i + 1; j < nums.length; j++) {
     if (target === nums[i] + nums[j]) {
-      result[0] = i;
-      result[1] = j;
+      // console.log(nums[i], nums[j], i, j, "==================== - 1");
+      // result[0] = i;
+      // result[1] = j;
+      result.push(i, j);
     }
   }
 }
 
-// console.log(result, "result - 1");
+console.log(result, "result - 1");
 
 /** 方法2:哈希表（散列表）
  * 1、把数字遍历一遍，用哈希表存起来
