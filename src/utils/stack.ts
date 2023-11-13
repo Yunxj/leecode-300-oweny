@@ -4,10 +4,12 @@ export class Stack {
     this.items = [];
   }
 
-  push(item) {
+  /** 入栈 */
+  push(item: any) {
     this.items.push(item);
   }
 
+  /** 出栈 */
   pop() {
     if (this.isEmpty()) {
       return null;
@@ -15,6 +17,7 @@ export class Stack {
     return this.items.pop();
   }
 
+  /** 查看栈的最后一个元素 */
   peek() {
     if (this.isEmpty()) {
       return null;
@@ -22,10 +25,12 @@ export class Stack {
     return this.items[this.items.length - 1];
   }
 
+  /** 栈是否为空 */
   isEmpty() {
     return this.items.length === 0;
   }
 
+  /** 栈的长度 */
   size() {
     return this.items.length;
   }

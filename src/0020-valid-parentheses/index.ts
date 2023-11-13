@@ -23,6 +23,31 @@
 
 import { Stack } from "../utils/index";
 
+const strValid = "[(({})}]";
 function isValid(s: string): Boolean {
-  return false;
+  const sk = new Stack();
+  if (s.length % 2 === 1) return false;
+  for (const value of s) {
+    if (value === "(" || value === "[" || value === "{") {
+      sk.push(value);
+    } else {
+      const temp = sk.pop();
+      switch (value) {
+        case ")":
+          if (temp !== "(") return false;
+          break;
+        case "]":
+          if (temp !== "[") return false;
+          break;
+        case "}":
+          if (temp !== "{") return false;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  return sk.size() === 0;
 }
+
+console.log(isValid(strValid), "isValidisValid");
