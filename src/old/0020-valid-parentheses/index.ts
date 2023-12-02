@@ -21,7 +21,7 @@
  * 3、遍历字符串，利用栈的特性，存在左括号，与右括号匹配。
  */
 
-import { Stack } from "../utils/index";
+import { Stack } from "../../utils/index";
 
 const strValid = "[(({})}]";
 /**

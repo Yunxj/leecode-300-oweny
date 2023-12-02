@@ -31,7 +31,7 @@
 //   }
 // }
 const util = require("util");
-import { ListNode, LinkedList } from "../utils/index";
+import { ListNode, LinkedList } from "../../utils/index";
 let mergeTwoListNode1 = {
   val: 1,
   next: {

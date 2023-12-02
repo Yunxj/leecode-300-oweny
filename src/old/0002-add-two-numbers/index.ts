@@ -1,4 +1,4 @@
-import { ListNode } from "../utils/listNode";
+import { ListNode } from "../../utils/listNode";
 /**
  * LeeCode - 2题，两数相加（Add Two Numbers）
  * 给你两个 非空 的链表，表示两个非负的整数。
