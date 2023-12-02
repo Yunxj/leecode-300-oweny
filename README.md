@@ -3,29 +3,39 @@
 ## 目录结构
 
 ```
-├── .gitignore
-├── .vscode
-│   └── settings.json
-├── README.md
-├── package-lock.json
-├── package.json
-└── src
-    ├── 0001-two-sum
-    │   ├── index.ts
-    │   ├── readme.md
-    │   └── type.ts
-    ├── 0002-add-two-numbers
-    │   ├── index.ts
-    │   ├── readme.md
-    │   └── type.ts
-    ├── 0020-valid-parentheses
-    │   ├── index.ts
-    │   ├── readme.md
-    │   └── type.ts
-    └── utils
-        ├── index.ts
-        ├── listNode.ts
-        └── stack.ts
+src
+├── new-order-carl
+│   ├── 01-array
+│   │   ├── 01-0704-binary-search
+│   │   │   ├── index.ts
+│   │   │   └── readme.md
+│   │   └── 02-
+│   │       └── readme.md
+│   └── 02-list
+│       └── readme.md
+├── old
+│   ├── 0001-two-sum
+│   │   ├── index.ts
+│   │   └── readme.md
+│   ├── 0002-add-two-numbers
+│   │   ├── index.ts
+│   │   └── readme.md
+│   ├── 0020-valid-parentheses
+│   │   ├── index.ts
+│   │   └── readme.md
+│   ├── 0021-merge-two-sorted-lists
+│   │   ├── index.ts
+│   │   └── readme.md
+│   ├── 0022-generate-parentheses
+│   │   ├── index.ts
+│   │   └── readme.md
+│   └── 0024-swap-in-pairs
+│       ├── index.ts
+│       └── readme.md
+└── utils
+    ├── index.ts
+    ├── listNode.ts
+    └── stack.ts
 ```
 
 ## 环境按照和使用说明
@@ -40,12 +50,14 @@ npm install
 
 - 打印结果， console.log(xxxx, "=========================");
   ```
-    ts-node ./src/001-two-sum
+    ts-node ./src/old/001-two-sum
   ```
 
 ### 每题文件命名格式
 
+- 目录位置调整，之前的刷题顺序不合理，放到 old 文件里面，新的刷题调整到 new-order-carl 文件中,按照数组、链表、哈希表的顺序开始。
 - 目录 './src', 四位数字 + 题目的英文全拼，中间用斜杠连接。例如：第一题 0001-two-sum，四位数字-题目完整的英文。
+- tree src
 
 ### 学习的思路
 
