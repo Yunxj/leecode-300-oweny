@@ -1,3 +1,0 @@
-### Problem Record
-
-1.
