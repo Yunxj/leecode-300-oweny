@@ -1,6 +1,6 @@
 /**
  * LeeCode - 704题(简单)，二分查找（binary search）- array - 01
- * 704. 两两交换链表中的节点
+ * 704. 二分查找
  * 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target，
  * 写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
  * 示例 1:
@@ -17,9 +17,33 @@
  * nums 的每个元素都将在 [-9999, 9999]之间。
  */
 
+/**
+ * 二分查找，画数轴
+ * [left, right],[left, right)，开闭区间的选择
+ * @param nums
+ * @param target
+ * @returns
+ */
 function searchR(nums: number[], target: number): number {
+  // 初始区域下标
+  let left = 0;
+  let right = nums.length - 1;
+  for (let i = 0; i < nums.length; i++) {
+    // 通过改变left和right的值，定义center的值，来控制二分法符合要求的区间范围
+    let center = Math.floor((left + right) / 2);
+    // +1和-1，排除center
+    if (target > nums[center]) {
+      left = center + 1;
+    } else if (target < nums[center]) {
+      right = center - 1;
+    } else {
+      return center;
+    }
+  }
   return -1;
 }
+
+console.log(searchR([-1, 0, 3, 5, 9, 12], 9), "searchR");
 
 /**
  * LeeCode - 27题(简单)，移除元素（remove element）- array - 02

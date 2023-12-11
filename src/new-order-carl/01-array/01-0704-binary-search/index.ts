@@ -1,6 +1,6 @@
 /**
  * LeeCode - 704题(简单)，二分查找（binary search）
- * 704. 两两交换链表中的节点
+ * 704. 二分查找
  * 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target，
  * 写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
  * 示例 1:
@@ -27,6 +27,7 @@ function search(nums: number[], target: number): number {
    * 就是从自己能取到值的索引下一位开始查找，能取到(闭区间)需要移位，不能取到(开区间)。
    */
   while (left <= right) {
+    // 改变下标的值，来控制二分法符合要求的区间
     let midline = Math.floor((left + right) / 2);
     if (nums[midline] > target) {
       right = midline - 1;
