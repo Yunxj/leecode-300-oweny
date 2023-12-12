@@ -43,7 +43,7 @@ function searchR(nums: number[], target: number): number {
   return -1;
 }
 
-console.log(searchR([-1, 0, 3, 5, 9, 12], 9), "searchR");
+// console.log(searchR([-1, 0, 3, 5, 9, 12], 9), "searchR");
 
 /**
  * LeeCode - 27题(简单)，移除元素（remove element）- array - 02
@@ -76,13 +76,22 @@ console.log(searchR([-1, 0, 3, 5, 9, 12], 9), "searchR");
  *  0 <= val <= 100
  */
 
-// 用原始方法实现，双指针用法,fast 为快指针，slow慢指针
+// 双指针用法,fast 为快指针，slow慢指针, 数组和长度都要正确
 
 function removeElementR(nums: number[], val: number): number | any {
+  // 慢指针控制原数组的新值下标，不等于val的值重新调整下标
   let slow = 0;
-
+  for (let fast = 0; fast < nums.length; fast++) {
+    if (nums[fast] !== val) {
+      nums[slow] = nums[fast];
+      slow++;
+    }
+  }
   return slow;
 }
+
+// console.log(removeElementR([0, 1, 2, 2, 3, 0, 4, 2], 2), "removeElementR");
+// console.log(removeElementR([3, 2, 2, 3], 3), "removeElementR");
 
 /**
  * LeeCode - 977题(简单)，有序数组的平方（Squares of a Sorted Array）- array - 03
@@ -106,10 +115,24 @@ function removeElementR(nums: number[], val: number): number | any {
 
 // 暴力法
 function sortedSquaresR(nums: number[]): number[] {
+  let i = 0;
+  let j = nums.length - 1;
   let res: number[] = [];
-
+  // 数组是非递减顺序，有对称性，通过左右双指针的方式，在一个循环中处理排序和数据插入
+  while (i <= j) {
+    if (Math.abs(nums[i]) < Math.abs(nums[j])) {
+      res.unshift(Math.pow(nums[j], 2));
+      j--;
+    } else {
+      res.unshift(Math.pow(nums[i], 2));
+      i++;
+    }
+  }
   return res;
 }
+
+// console.log(sortedSquaresR([-4, -1, 0, 3, 10]), "sortedSquaresR");
+// console.log(sortedSquaresR([-5, -3, -2, -1]), "sortedSquaresR");
 
 /**
  * LeeCode - 209题(中等)，长度最小的子数组（Minimum Size Subarray Sum）array - 04
