@@ -17,6 +17,26 @@
  * nums 的每个元素都将在 [-9999, 9999]之间。
  */
 
+function searchRR(nums: number[], target: number): number {
+  let left = 0;
+  let right = nums.length - 1;
+  for (let i = 0; i < nums.length; i++) {
+    // 初始化的left和right控制的center取值，求中值left、right相加除以2，向下取整
+    let center = Math.floor((left + right) / 2); // 易漏、易错点
+    // right的和left的+1、-1，排出center在数轴中的
+    // 和target比较的是值（nums[center]），不是center
+    if (nums[center] > target) {
+      right = center - 1;
+    } else if (nums[center] < target) {
+      left = center + 1;
+    } else {
+      return center;
+    }
+  }
+  return -1;
+}
+console.log(searchRR([-1, 0, 3, 5, 9, 12], 9), "searchRr");
+
 /**
  * 二分查找，画数轴
  * [left, right],[left, right)，开闭区间的选择
@@ -161,10 +181,53 @@ function sortedSquaresR(nums: number[]): number[] {
  * 进阶：
  *  如果你已经实现 O(n) 时间复杂度的解法, 请尝试设计一个 O(n log(n)) 时间复杂度的解法。
  */
-
+// 此方法pass，在LeeCode上超时了。。。O(n^2)
 function minSubArrayLenR(target: number, nums: number[]): number {
-  return 0;
+  let sum = 0;
+  let res = nums.length + 1;
+  let sumLength = 0;
+  for (let i = 0; i < nums.length; i++) {
+    sum = 0;
+    for (let j = i; j < nums.length; j++) {
+      sum += nums[j];
+      if (sum >= target) {
+        // 满足条件，表示长度需要加一
+        sumLength = j - i + 1;
+        res = res > sumLength ? sumLength : res;
+      }
+    }
+  }
+
+  return res === nums.length + 1 ? 0 : res;
 }
+
+// 单for循环+while
+function minSubArrayLenRS(target: number, nums: number[]): number {
+  let sum = 0;
+  let res = nums.length + 1;
+  let j = 0;
+  for (let i = 0; i < nums.length; i++) {
+    // 窗口移动，i控制头部，j控制尾部，sum=累加nums[i]集合
+    sum += nums[i];
+    while (sum >= target) {
+      // 与之前的最小长度比较，最短的存入res中，头与尾的下标相减+1位长度
+      res = Math.min(res, i - j + 1);
+      //满足条件时，sum的集合减去nums[j]尾部,j++,向前移动一位
+      sum -= nums[j]; // 易漏、易错点
+      j++;
+    }
+  }
+  return res === nums.length + 1 ? 0 : res;
+}
+
+// console.log(
+//   minSubArrayLenR(15, [5, 1, 3, 5, 10, 7, 4, 9, 2, 8]),
+//   "minSubArrayLenR"
+// );
+console.log(
+  minSubArrayLenRS(15, [5, 1, 3, 5, 10, 7, 4, 9, 2, 8]),
+  "minSubArrayLenR"
+);
 
 /**
  * LeeCode - 59题(中等)，螺旋矩阵 II（Spiral Matrix II）array - 05
