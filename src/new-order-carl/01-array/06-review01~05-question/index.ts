@@ -224,10 +224,10 @@ function minSubArrayLenRS(target: number, nums: number[]): number {
 //   minSubArrayLenR(15, [5, 1, 3, 5, 10, 7, 4, 9, 2, 8]),
 //   "minSubArrayLenR"
 // );
-console.log(
-  minSubArrayLenRS(15, [5, 1, 3, 5, 10, 7, 4, 9, 2, 8]),
-  "minSubArrayLenR"
-);
+// console.log(
+//   minSubArrayLenRS(15, [5, 1, 3, 5, 10, 7, 4, 9, 2, 8]),
+//   "minSubArrayLenR"
+// );
 
 /**
  * LeeCode - 59题(中等)，螺旋矩阵 II（Spiral Matrix II）array - 05
@@ -243,13 +243,16 @@ console.log(
  */
 
 /**
+ * 读懂题意，发现规律
  * 矩阵从最外层往里面循环
  * 统一逻辑处理规则，遵循左闭右开[)的规则
  * 边界：
  *  loop：循环圈 Math.floor(n / 2)
  *  mid：特殊情况，n的奇偶性判断， Math.floor(n / 2)，最中间的位置
  *  startX,startY：循环前进时，x,y轴方向的坐标，
- *  i，j：当前while循环计数，具体数值的插入坐标，i确定一维的坐标，j确定二维的坐标
+ *  内循环每一个方向一个for，i，j：当前while循环计数，具体数值的插入坐标，i确定一维的坐标，j确定二维的坐标
+ *    坐标系m(行) * n(列)，（x , y）
+ *
  *  offset:控制每圈循环的长度,
  *  count: 计数，与n^2的对应
  *
@@ -257,5 +260,48 @@ console.log(
  * @returns
  */
 function generateMatrix(n: number): number[][] {
-  return [];
+  let startX: number = 0;
+  let startY: number = 0;
+  let loop: number = Math.floor(n / 2);
+  let mid: number = Math.floor(n / 2);
+  let offset: number = 1;
+  let count: number = 1;
+  let res: number[][] = new Array(n).fill(0).map(() => new Array(n));
+
+  // 先找到规律，确定内部循环的逻辑，再看外部要进行几次
+  while (loop--) {
+    // （x , y）(startX , startY)（行 ， 列）,先累加的是列
+    let i = startX;
+    let j = startY;
+    // 边界[ )、[]对应，for循环中的 < 或 <=
+    // 上行 列y++，小于最大限制
+    for (; j < n - offset; j++) {
+      res[i][j] = count++;
+    }
+    // 右侧 行x++，小于最大限制
+    for (; i < n - offset; i++) {
+      res[i][j] = count++;
+    }
+    // 下行 列y--，大于最小限制
+    for (; j > startY; j--) {
+      res[i][j] = count++;
+    }
+    // 左侧 行x--，大于最小限制
+    for (; i > startX; i--) {
+      res[i][j] = count++;
+    }
+
+    // 一次内部循环走完，根据外部循环调整，新一轮的内部循环的起始位置startX,startY，for中i，y的边界限制
+    startX++;
+    startY++;
+    offset += 1;
+  }
+  // 奇偶性
+  if (n % 2 === 1) {
+    res[mid][mid] = count;
+  }
+
+  return res;
 }
+
+console.log(generateMatrix(3), "generateMatrix");
